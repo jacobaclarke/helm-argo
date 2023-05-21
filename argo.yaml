@@ -8,6 +8,6 @@ spec:
     helm:
       valueFiles:
       - $values/charts/prometheus/values.yaml
-  - repoURL: 'https://git.example.gom/org/value-files.git'
+  - repoURL: 'https://github.com/jacobaclarke/helm-argo.git'
     targetRevision: dev
     ref: values
