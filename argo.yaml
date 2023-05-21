@@ -1,13 +1,23 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
+metadata:
+  name: helloworld
 spec:
+  project: default
+  destination:
+    name: ''
+    namespace: argocd
+    server: 'https://kubernetes.default.svc'
   sources:
-  - repoURL: 'https://prometheus-community.github.io/helm-charts'
+  - repoURL: 'https://github.com/pablorsk/kubernetes-helm-hello-world/tree/master/helloworld-chart'
     chart: prometheus
     targetRevision: 15.7.1
     helm:
       valueFiles:
-      - $values/charts/prometheus/values.yaml
+      - $values/values.yaml
   - repoURL: 'https://github.com/jacobaclarke/helm-argo.git'
-    targetRevision: dev
     ref: values
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
