@@ -11,4 +11,4 @@ spec:
     path: homebridge
   destination:
     server: https://kubernetes.default.svc
-    namespace: homebridge
+    namespace: argocd
