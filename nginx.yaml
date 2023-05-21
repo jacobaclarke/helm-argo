@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: infrastructure-labs-exercise
+  namespace: testing
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  sources:
+    - repoURL: https://github.com/xxxx/infrastructure-labs
+      targetRevision: SPIKE/tests
+      ref: myRepo
+    - repoURL: https://charts.bitnami.com/bitnami
+      targetRevision: 13.2.21
+      chart: nginx
+      helm:
+        valueFiles:
+          - $myRepo/argo-cd-exercises/nginx-values-10/values.yaml
+  destination:
+    name: in-cluster
+    namespace: daniel-tests
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+      allowEmpty: false
