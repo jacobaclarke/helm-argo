@@ -8,7 +8,7 @@ metadata:
 spec:
   project: default
   sources:
-    - repoURL: https://github.com/xxxx/infrastructure-labs
+    - repoURL: https://github.com/jacobaclarke/helmargo
       targetRevision: SPIKE/tests
       ref: myRepo
     - repoURL: https://charts.bitnami.com/bitnami
@@ -16,10 +16,10 @@ spec:
       chart: nginx
       helm:
         valueFiles:
-          - $myRepo/argo-cd-exercises/nginx-values-10/values.yaml
+          - $myRepo/values.yaml
   destination:
     name: in-cluster
-    namespace: daniel-tests
+    namespace: testing
   syncPolicy:
     automated:
       prune: true
