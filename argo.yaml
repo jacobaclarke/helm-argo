@@ -9,7 +9,7 @@ spec:
     namespace: argocd
     server: 'https://kubernetes.default.svc'
   sources:
-  - repoURL: 'https://github.com/pablorsk/kubernetes-helm-hello-world/tree/master/helloworld-chart'
+  - repoURL: 'https://github.com/pablorsk/kubernetes-helm-hello-world'
     chart: prometheus
     targetRevision: 15.7.1
     helm:

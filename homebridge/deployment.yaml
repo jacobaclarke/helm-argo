@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: homebridge
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: homebridge
+  template:
+    metadata:
+      labels:
+        app: homebridge
+    spec: 
+      containers:
+      - name: homebridge
+        image: oznu/homebridge:latest
+        ports:
+        - containerPort: 8581
+        volumeMounts:
+        - name: homebridge
+          mountPath: /homebridge
+      # - name: zigbee2mqtt
+      #   image: koenkk/zigbee2mqtt:latest
+      #   ports:
+      #   - containerPort: 8080
+        # volumeMounts:
+        # - name: zigbee2mqtt
+        #   mountPath: /app/data
+      volumes:
+      - name: homebridge
+        hostPath:
+          path: /home/jacob/repos/desk/data/homebridge
+      # - name: zigbee2mqtt
+      #   hostPath:
+      #     path: /home/jacob/repos/desk/data/zigbee2mqtt
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: homebridge
+spec:
+  type: NodePort
+  ports:
+    - port: 8581
+      nodePort: 30081
+      name: http
+    # - port: 8080
+    #   nodePort: 30082
+    #   name: mqtt
+  selector:
+    app: homebridge
