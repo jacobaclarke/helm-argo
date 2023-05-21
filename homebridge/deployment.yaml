@@ -35,19 +35,19 @@ spec:
       #   hostPath:
       #     path: /home/jacob/repos/desk/data/zigbee2mqtt
 
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: homebridge
-spec:
-  type: NodePort
-  ports:
-    - port: 8581
-      nodePort: 30081
-      name: http
-    # - port: 8080
-    #   nodePort: 30082
-    #   name: mqtt
-  selector:
-    app: homebridge
+# ---
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: homebridge
+# spec:
+#   type: NodePort
+#   ports:
+#     - port: 8581
+#       nodePort: 30081
+#       name: http
+#     # - port: 8080
+#     #   nodePort: 30082
+#     #   name: mqtt
+#   selector:
+#     app: homebridge
